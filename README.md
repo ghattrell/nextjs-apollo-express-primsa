@@ -1,1 +1,1 @@
-# prisma-boilerplate
+# nextjs-apollo-express-prisma
