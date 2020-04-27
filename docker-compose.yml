@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  server:
+    build:
+      context: ./backend
+    expose:
+      - 4000
+    ports:
+      - 4000:4000
+    volumes:
+      - ./backend:/app
+    # command: npm start
+    container_name: prisma-apollo-base
+  client:
+    build:
+      context: ./frontend
+    expose:
+      - 8000
+    ports:
+      - 8000:8000
+    volumes:
+      - ./frontend:/app
+    container_name: next-js-client
+  mysql:
+    image: mysql:latest
+    container_name: mysql_latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 4306:3306
+    volumes:
+      - mysql_db_data_container:/var/lib/mysql
+
+volumes:
+  mysql_db_data_container:
