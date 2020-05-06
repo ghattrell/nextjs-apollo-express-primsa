@@ -3,34 +3,33 @@ services:
   server:
     build:
       context: ./backend
-    expose:
-      - 4000
     ports:
       - 4000:4000
+      - 9229:9229
     volumes:
       - ./backend:/app
     # command: npm start
-    container_name: prisma-apollo-base
+    container_name: ${SERVER_CONTAINER_NAME}
   client:
     build:
       context: ./frontend
-    expose:
-      - 8000
     ports:
       - 8000:8000
     volumes:
       - ./frontend:/app
-    container_name: next-js-client
+    container_name: ${CLIENT_CONTAINER_NAME}
   mysql:
-    image: mysql:latest
-    container_name: mysql_latest
+    image: mysql:5.7
+    container_name: ${MYSQL_CONTAINER_NAME}
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
-      - 4306:3306
+      - 3307:3306
     volumes:
-      - mysql_db_data_container:/var/lib/mysql
-
+      - db:/var/lib/mysql
 volumes:
-  mysql_db_data_container:
+  db:

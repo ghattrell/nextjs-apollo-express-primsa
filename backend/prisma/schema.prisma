@@ -21,11 +21,6 @@ model User {
   role      Role @default(USER)
 }
 
-model George {
-  id Int @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  rank String
-}
 
 enum Role {
   USER

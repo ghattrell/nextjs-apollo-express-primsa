@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:latest
 
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
@@ -9,5 +9,6 @@ WORKDIR /app
 COPY package.json /app
 COPY . /app
 
+RUN npx prisma generate
 
 CMD [ "npm", "run", "dev" ]
