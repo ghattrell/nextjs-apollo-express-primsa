@@ -2,7 +2,7 @@
 
 This is just a boiler plate for a fullstack web app using Prisma 2, Apollo 2, Express and Next JS. Download the repo and build your app out.
 
-##Quickstart
+## Quickstart
 
 Add in the blanks which have been provided in the env.sample in the root directory. 
 
