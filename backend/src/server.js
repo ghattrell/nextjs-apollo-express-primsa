@@ -3,6 +3,8 @@ const { ApolloServer } = require('apollo-server-express');
 const { PrismaClient } = require('@prisma/client');
 const Query = require('./resolvers/Query');
 const Schema = require('./schema');
+const cors = require('cors');
+
 // const Mutation = require('./resolvers/Mutation');
 
 const typeDefs = Schema.typeDefs;
@@ -12,6 +14,7 @@ const prisma = new PrismaClient()
 const PORT = 4000;
 
 const app = express();
+app.use(cors());
 
 const resolvers = {
   Query
